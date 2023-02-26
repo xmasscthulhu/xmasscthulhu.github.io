@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+        <script src="randomEncounterTables.js"></script>
+        <script src="randomEncounterGenerator.js"></script>
+        <link rel="stylesheet" href="dolmenwoodEncounterStyle.css">
+        <title>Random Encounter Generator</title>
+    </head>
+    <body id="body">
+        <div id="mainDiv">
+            <div id="headDiv">
+                <h1>Dolmenwood Encounter Generator</h1>
+            </div>
+            <form>
+                <select id="region">
+                    <option>Aldweald</option>
+                    <option>Dwelmfurgh</option>
+                    <option>Fever Marsh</option>
+                    <option>Hag's Addle</option>
+                    <option>High Wold</option>
+                    <option>Mulchgrove</option>
+                    <option>Nagwood</option>
+                    <option>Northern Scratch</option>
+                    <option>Table Downs</option>
+                    <option>Tithelands</option>
+                    <option>Valley of Wise Beasts</option>
+                </select>
+                <label for="timeCheck" class="switch">Daytime?</label>
+                    <input type="checkbox" id="timeCheck" checked="true" onclick="timeOfDay()">
+                    <span class="slide"></span>
+                <div id="dayEncounter" style="display:block">
+                    <input type="button" onclick="encounterGenerator('dayroad')" value="Road/Track">
+                    <input type="button" onclick="encounterGenerator('daywild')" value="Wild">
+                    <input type="button" onclick="encounterGenerator('aquatic')" value="Aquatic">
+                </div>
+                <div id="nightEncounter" style="display:none">
+                    <input class="nightButton" type="button" onclick="encounterGenerator('nightfire')" value="Fire">
+                    <input class="nightButton" type="button" onclick="encounterGenerator('nightnofire')" value="No Fire">
+                    <input class="nightbutton" type="button" onclick="encounterGenerator('aquatic')" value="Aquatic">
+                </div>
+                <div id="output" style="display:none">
+                    <p id="encounterText">Encounter!</p>
+                    <div>
+                        <ul id="sources">
+                            <li><strong>Italics:</strong> Old-School Essentials</li>
+                            <li><strong>Asterisks(*):</strong> Game animal. Dolmenwood Campaign Book, pg. 164</li>
+                            <li><strong>Others:</strong> Dolmenwood Monster Book</li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+
+</html>
