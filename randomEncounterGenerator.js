@@ -75,15 +75,15 @@ function nightNoFireEnc() {
 function reactionRoller() {
     let d6x2 = randomArrayItem(5,0) + randomArrayItem(5,0);
     if (d6x2 <= 2) {
-        return `hostile (attacks)`;
+        return `hostile`;
     } else if (d6x2 >= 3 && d6x2 <= 5) {
-        return `unfriendly (may attack)`;
+        return `unfriendly`;
     } else if (d6x2 >= 6 && d6x2 <= 8) {
-        return `neutral (uncertain)`;
+        return `neutral`;
     } else if (d6x2 >=9 && d6x2 <=11) {
-        return `indifferent (uninterested)`;
+        return `indifferent`;
     } else if (d6x2 >= 12) {
-        return `friendly (helpful)`;
+        return `friendly`;
     }
 }
 
