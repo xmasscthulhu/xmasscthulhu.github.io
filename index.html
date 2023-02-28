@@ -2,8 +2,11 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+        <script src="underscore-umd.js"></script>
         <script src="randomEncounterTables.js"></script>
         <script src="randomEncounterGenerator.js"></script>
+        <script src="dolmenwoodNpcTables.js"></script>
+        <script src="dolmenwoodNPCGenerator.js"></script>
         <link rel="stylesheet" href="dolmenwoodEncounterStyle.css">
         <title>Random Encounter Generator</title>
     </head>
@@ -26,6 +29,7 @@
                     <option>Tithelands</option>
                     <option>Valley of Wise Beasts</option>
                 </select>
+            </form>
                 <label for="timeCheck" class="switch">Daytime?</label>
                     <input type="checkbox" id="timeCheck" checked="true" onclick="timeOfDay()">
                     <span class="slide"></span>
@@ -33,11 +37,41 @@
                     <input type="button" onclick="encounterGenerator('dayroad')" value="Road/Track">
                     <input type="button" onclick="encounterGenerator('daywild')" value="Wild">
                     <input type="button" onclick="encounterGenerator('aquatic')" value="Aquatic">
+                    <input type="button" onclick="partyGenerator()" value="Adventuring Party">
                 </div>
                 <div id="nightEncounter" style="display:none">
                     <input class="nightButton" type="button" onclick="encounterGenerator('nightfire')" value="Fire">
                     <input class="nightButton" type="button" onclick="encounterGenerator('nightnofire')" value="No Fire">
-                    <input class="nightbutton" type="button" onclick="encounterGenerator('aquatic')" value="Aquatic">
+                    <input class="nightButton" type="button" onclick="encounterGenerator('aquatic')" value="Aquatic">
+                    <input class="nightbutton" type="button" onclick="partyGenerator()" value="Adventuring Party">
+                </div>
+                <div id="npcGenInputs" style="display:block">
+                    <form id="npcGenForm">
+                        <label>Level</label>
+                        <select name="levelChoice" id="levelChoice">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                            <option value=9>9</option>
+                        </select>
+                        <select name="classChoice" id="classChoice">
+                            <option value='{"class":"elf"}'>Elf</option>
+                            <option value='{"class":"friar"}'>Friar</option>
+                            <option value='{"class":"goatfolk"}'>Goatfolk</option>
+                            <option value='{"class":"grimalkin"}'>Grimalkin</option>
+                            <option value='{"class":"hunter"}'>Hunter</option>
+                            <option value='{"class":"knight"}'>Knight</option>
+                            <option value='{"class":"minstrel"}'>Minstel</option>
+                            <option value='{"class":"mossDwarf"}'>Moss Dwarf</option>
+                            <option value='{"class":"woodgrue"}'>Woodgrue</option>
+                        </select>
+                        <input type="button" onclick="submission()" value="Submit">
+                    </form>
                 </div>
                 <div id="output" style="display:none">
                     <p id="encounterText">Encounter!</p>
@@ -49,7 +83,9 @@
                         </ul>
                     </div>
                 </div>
-            </form>
+                <div id="npcPartyText" style="display:none">
+                    <p id="npcStatBlock"></p>
+                </div>
         </div>
     </body>
 
