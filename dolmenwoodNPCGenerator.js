@@ -418,6 +418,13 @@ function statsLoader(npcClass, npcLevel) {
     return [thac0, saves];
 }
 
+function traitLoader() {
+    let rndPers1 = _.shuffle(npcDesc.personality).slice(0,1);
+    let rndPers2 = _.shuffle(npcDesc.personality).slice(0,1);
+    let rndDesc = _.shuffle(npcDesc.description).slice(0,1);
+    return `${rndPers1}, ${rndPers2}, ${rndDesc}`
+}
+
 //checkers
 //checks if NPC has a magic weapon
 function magicWeaponChecker(lvl) {
@@ -485,6 +492,15 @@ function npcGenerator(npcClass,npcLevel,npcTitle) {
     <br>`;
 }
 
+/*
+function randomQuest() {
+    randomLawful = lvip[arrayItemGrabber(lvip.length,0)];
+    randomNeutral = nvip[arrayItemGrabber(nvip.length,0)];
+    randomChaotic = cvip[arrayItemGrabber(cvip.length,0)];
+    randQ = randQuest[arrayItemGrabber[quest.length,0]];
+    console.log(randomLawful, randomNeutral, randomChaotic); 
+}*/
+
 function partyLevel() {
     d12 = dice(1,12);
     if (d12 <= 3) {
@@ -523,4 +539,10 @@ function partyGenerator() {
         classTitle = classValue.class;
         npcGenerator(classObj,levelValue,classTitle);
    }
+}
+
+function copyToClipboard(){
+    let copyText = document.getElementById("npcStatBlock").innerText;
+    navigator.clipboard.writeText(copyText);
+    alert("Copied the text: " + copyText);
 }
