@@ -2,6 +2,7 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://kit.fontawesome.com/ffe8401a67.js" crossorigin="anonymous"></script>
         <script src="underscore-umd.js"></script>
         <script src="randomEncounterTables.js"></script>
         <script src="randomEncounterGenerator.js"></script>
@@ -11,41 +12,55 @@
         <title>Random Encounter Generator</title>
     </head>
     <body id="body">
+        <div id="headDiv">
+            <h1>Dolmenwood Encounter Generator</h1>
+        </div>
         <div id="mainDiv">
-            <div id="headDiv">
-                <h1>Dolmenwood Encounter Generator</h1>
-            </div>
-            <form>
-                <select id="region">
-                    <option>Aldweald</option>
-                    <option>Dwelmfurgh</option>
-                    <option>Fever Marsh</option>
-                    <option>Hag's Addle</option>
-                    <option>High Wold</option>
-                    <option>Mulchgrove</option>
-                    <option>Nagwood</option>
-                    <option>Northern Scratch</option>
-                    <option>Table Downs</option>
-                    <option>Tithelands</option>
-                    <option>Valley of Wise Beasts</option>
-                </select>
-            </form>
-                <label for="timeCheck" class="switch">Daytime?</label>
-                    <input type="checkbox" id="timeCheck" checked="true" onclick="timeOfDay()">
-                    <span class="slide"></span>
+            <div id="inputDiv">
+                <h2>Generate Encounter</h2>
+                <p>Choose the Region, time of day, and the circumstance.</p>
+                <div id="regionAndTime">
+                    <form>
+                        <select id="region">
+                            <option>Aldweald</option>
+                            <option>Dwelmfurgh</option>
+                            <option>Fever Marsh</option>
+                            <option>Hag's Addle</option>
+                            <option>High Wold</option>
+                            <option>Mulchgrove</option>
+                            <option>Nagwood</option>
+                            <option>Northern Scratch</option>
+                            <option>Table Downs</option>
+                            <option>Tithelands</option>
+                            <option>Valley of Wise Beasts</option>
+                        </select>
+                    </form>
+                        <label class="fancy-checkbox">
+                            <input type="checkbox" id="timeCheck" checked="true" onclick="timeOfDay()"/>
+                            <i class="fa-solid fa-sun fa-2xl fa-beat checked" style="--fa-animation-duration: 2s;"></i>
+                            <i class="fa-solid fa-moon fa-2xl fa-beat unchecked" style="--fa-animation-duration: 2s;"></i>
+                            </input>
+                        </label>
+                        <!--<input type="checkbox" id="timeCheck" checked="true" onclick="timeOfDay()">
+                        <label for="timeCheck" class="fas sun"></label>
+                        <label for="timeCheck" class="fas moon"></label>-->
+                </div>
                 <div id="dayEncounter" style="display:block">
                     <input type="button" onclick="encounterGenerator('dayroad')" value="Road/Track">
                     <input type="button" onclick="encounterGenerator('daywild')" value="Wild">
                     <input type="button" onclick="encounterGenerator('aquatic')" value="Aquatic">
-                    <input type="button" onclick="partyGenerator()" value="Adventuring Party">
                 </div>
                 <div id="nightEncounter" style="display:none">
-                    <input class="nightButton" type="button" onclick="encounterGenerator('nightfire')" value="Fire">
-                    <input class="nightButton" type="button" onclick="encounterGenerator('nightnofire')" value="No Fire">
-                    <input class="nightButton" type="button" onclick="encounterGenerator('aquatic')" value="Aquatic">
-                    <input class="nightbutton" type="button" onclick="partyGenerator()" value="Adventuring Party">
+                    <input  type="button" onclick="encounterGenerator('nightfire')" value="Fire">
+                    <input  type="button" onclick="encounterGenerator('nightnofire')" value="No Fire">
+                    <input type="button" onclick="encounterGenerator('aquatic')" value="Aquatic">
+                </div>
+                <div id="party">
+                    <h2>Generate an Adventuring Party</h2>
+                    <input type="button" onclick="partyGenerator()" value="Adventuring Party">
                 </div>
                 <div id="npcGenInputs" style="display:block">
+                    <h2>Generate Single NPC by Level and Class</h2>
                     <form id="npcGenForm">
                         <label>Level</label>
                         <select name="levelChoice" id="levelChoice">
@@ -73,7 +88,10 @@
                         <input type="button" onclick="submission()" value="Submit">
                     </form>
                 </div>
-                <div id="output" style="display:none">
+            </div>
+            <div id="output">
+                <div id="encounterDiv" style="display:none">
+                    <h2>Random Encounter</h2>
                     <p id="encounterText">Encounter!</p>
                     <div>
                         <ul id="sources">
@@ -87,8 +105,10 @@
                     <h2>NPCs</h2>
                     <p id="questText"></p>
                     <p id="npcStatBlock"></p>
+                    <p><strong>Note:</strong> This only outputs Dolmenwood-specific NPCs. Visit the official <a href="https://oldschoolessentials.necroticgnome.com/generators/adventuring-party-generator">OSE generator page</a> for Standard NPCs.</p>
                     <input type="button" onclick="copyToClipboard()" value="Copy to Clipboard">`
                 </div>
+            </div>
         </div>
     </body>
 

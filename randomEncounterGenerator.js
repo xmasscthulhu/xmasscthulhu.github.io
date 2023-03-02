@@ -5,12 +5,12 @@ function timeOfDay() {
     if (checkBox.checked == true) {
         day.style.display = "block";
         night.style.display = "none";
-        document.getElementById("mainDiv").style.backgroundColor = "rgb(185, 231, 188)";
+        //document.getElementById("mainDiv").style.backgroundColor = "rgb(185, 231, 188)";
     } else {
         night.style.display = "block";
         day.style.display = "none";
-        document.getElementById("mainDiv").style.backgroundColor = "rgb(59, 0, 168)";
-        document.getElementsByTagName("input").style.color = "red";
+        //document.getElementById("mainDiv").style.backgroundColor = "rgb(59, 0, 168)";
+        //document.getElementsByTagName("input").style.color = "red";
     }
 }
 
@@ -184,5 +184,5 @@ function randomInteger(max,min) {
 function encounterGenerator(x) {
     let primary = primaryEncounter(x);
     document.getElementById("encounterText").innerHTML = primary
-    document.getElementById("output").style.display = "block";
+    document.getElementById("encounterDiv").style.display = "block";
 }

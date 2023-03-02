@@ -2,38 +2,112 @@ body {
     background-color: black;
 }
 
+h1 {
+    font-size: 2em;
+    margin: 0%;
+    padding: 0.5em;
+}
 
-#headDiv {
-    background-color: rgba(245, 245, 245, 0.5);
-    width: 95%;
+h2 {
+    margin:0%;
     padding-left: 5%;
 }
 
-#mainDiv {
-    margin-left: 15%;
-    margin-right: 15%;
+#headDiv {
+    margin-left: 25%;
+    margin-right: 25%;
     background-color: rgb(185, 231, 188);
-    border-radius: 15px;
-    padding-top: 10%;
-    padding-bottom: 10%
+    padding-left: 5%;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    border-bottom: 1px solid black;
 }
 
-#output {
+#mainDiv {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 0%;
+    padding-top: 1%;
+    background-color: rgb(185, 231, 188);
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+#inputDiv {
+    background-color: rgb(185, 231, 188);
+    border-radius: 15px;
+    min-width: 60%;
+    border-right: 1px solid black;
+    padding-left: 5%;
+}
+
+#encounterDiv {
     background-color: rgba(245, 245, 245, 0.5);
     padding: 1em;
-    border-radius: 10px;
-    margin-top: 5%;
+    border-radius: 1em;
 }
 
 #npcPartyText {
     background-color: rgba(245, 245, 245, 0.5);
-    padding: 1em;
-    border-radius: 10px;
-    margin-top: 5%;
+    padding: 0.5em;
+    border-radius: 1em;
+    margin-top: 1em;
 }
+
+#regionAndTime {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+
+label {
+    padding-top: 1em;
+}
+
+.fancy-checkbox {
+    background-color: rgba(119, 119, 119, 0.2);
+    padding: 1em;
+    margin-left: 0.5em;
+    border-radius: 5px;
+}
+
+.fancy-checkbox:hover {
+    scale : 1.1;
+    box-shadow: 2px 2px 5px;
+}
+
+.fancy-checkbox input[type=checkbox],
+.fancy-checkbox .checked {
+    display: none;
+}
+
+.fancy-checkbox input[type="checkbox"]:checked ~ .checked {
+    display: inline-block;
+}
+
+.fancy-checkbox input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+}
+
 
 #sources {
     font-size: .75em;
+}
+
+p {
+    font-size: 1em;
+}
+
+select {
+    padding: 1em;
+    font-size: 1em;
+    border: 0px;
+    background-color: rgba(119, 119, 119,0.1);
+    border-bottom: 1px solid black;
+    border-radius: 5px;
 }
 
 .nightButton {
@@ -52,15 +126,14 @@ input:hover {
 }
 
 form {
-    margin-left: 5%;
-    margin-right: 5%;
+    font-size: 1em;
 }
 
-input {
+input[type="button"] {
     background-color: rgba(119, 119, 119, 0.2);
     border: 0;
     margin: 0.2em;
-    padding: 12px;
+    padding: 1em;
     font-size: 1em;
     border-radius: 5px;
 }
@@ -71,4 +144,52 @@ input:active {
 
 #npcStatBlock {
     max-width: 300px;
+}
+
+@media (max-width: 800px) {
+    .flex-container {
+        flex-direction: column;
+    }
+    h1,h2 {
+        padding:0%;
+    }
+    #headDiv {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    #mainDiv {
+        margin-left: 0%;
+        margin-right: 0%;
+        flex-direction: column;
+        padding-left: 0%;
+    }
+    #inputDiv {
+        border: none;
+        padding-left: 0%;
+    }
+    #encounterDiv {
+        padding-left: 0%;
+    }
+    input[type="button"] {
+        flex-direction: column;
+        min-width: 100%;
+        margin: 0%;
+        border-bottom: 1px solid black;
+    }
+    #dayEncounter, #nightEncounter {
+        margin-left: 0%;
+    }
+    input:hover {
+        scale: 1;
+    }
+    .fancy-checkbox {
+        margin-left: 5px;
+        border-bottom: 1px solid black;
+    }
+    form {
+        margin: 0;
+    }
+    select {
+        padding: 1em;
+    }
 }
