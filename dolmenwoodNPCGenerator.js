@@ -98,19 +98,36 @@ function magicItemLoader(npcLevel) {
     return `<strong>Items:</strong> <em>${items}</em>`;
 }
 
+function hornLoader (cls,lvl) {
+    if (cls === goatfolk) {
+        if (lvl <= 3) {
+            return ", or horns (1d4)";
+        } else if (lvl >= 4 && lvl <= 6) {
+            return ", or horns (1d6)";
+        } else if (lvl >= 7 && lvl <= 9) {
+            return ", or horns (1d8)";
+        } else {
+            return ", or horns (1d10)";
+        }
+    } else {
+        return "";
+    }
+}
+
 function weaponLoader(cls,lvl) {
     let wpnMax = cls.weapons.length;
     let wpnRnd = cls.weapons[dieRoller(wpnMax-1,0)]
     let isWpnMgc = magicWeaponChecker(lvl);
     let mgcWpn = "";
     let wpn = ""
+    let horns = hornLoader(cls,lvl);
     if (isWpnMgc === true) {
         mgcWpn = magicWeaponLoader(cls);
-        return mgcWpn;
+        return mgcWpn + horns;
     } else {
         wpn = wpnRnd;
         console.log(wpn);
-        return wpn;
+        return wpn + horns;
     }
 }
 
@@ -335,7 +352,46 @@ function spellLoader(npcClass,npcLevel) {
         } return `<strong>Glamours:</strong> <em>${glamoursKnown}</em>`; 
     } else if (cls === mossDwarf) {
         knackKnown += knacks[dieRoller(6,1)];
-        return `<strong>Knack:</strong> <em>${knackKnown}</em>`;;
+        return `<strong>Knack:</strong> <em>${knackKnown}</em>`;
+    } else if (cls === goatfolk) {
+        switch (lvl) {
+            case 0 : case 1 : case 2 :
+                spellsKnown = "";
+                break;
+            case 3 :
+                spellsKnown = cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                break;
+            case 4 :
+                spellsKnown = cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                break;
+            case 5 : 
+                spellsKnown = cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[1][dieRoller(cls.spells[1].length-1,0)];
+                break;
+            case 6 : 
+                spellsKnown = cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[1][dieRoller(cls.spells[1].length-1,0)];
+                spellsKnown += ", " + cls.spells[1][dieRoller(cls.spells[1].length-1,0)];
+                break;
+            case 7 :
+                spellsKnown = cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[1][dieRoller(cls.spells[1].length-1,0)];
+                spellsKnown += ", " + cls.spells[1][dieRoller(cls.spells[1].length-1,0)];
+                spellsKnown += ", " + cls.spells[2][dieRoller(cls.spells[2].length-1,0)];
+                break;
+            case 8 :
+                spellsKnown = cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[0][dieRoller(cls.spells[0].length-1,0)];
+                spellsKnown += ", " + cls.spells[1][dieRoller(cls.spells[1].length-1,0)];
+                spellsKnown += ", " + cls.spells[1][dieRoller(cls.spells[1].length-1,0)];
+                spellsKnown += ", " + cls.spells[2][dieRoller(cls.spells[2].length-1,0)];
+                spellsKnown += ", " + cls.spells[2][dieRoller(cls.spells[2].length-1,0)];
+                break;
+        } return `<strong>Spells:</strong> <em>${spellsKnown}</em>`;
     } else {
         return "";
     }
