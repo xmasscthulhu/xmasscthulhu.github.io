@@ -70,6 +70,15 @@ function mundaneItems() {
     return mndItems;
 }
 
+function commaSperator(array) {
+    arr = array.length;
+    if (arr < 1) {
+        return "";
+    } else if (arr >= 1) {
+        return ", ";
+    }
+}
+
 function magicItemLoader(npcLevel) {
     let lvl = npcLevel
     let d20 = 0;
@@ -84,29 +93,34 @@ function magicItemLoader(npcLevel) {
     for (let i = 0; i < lvl; i++) {
         d20 = dieRoller(20,1);
         if (d20 === 20) {
-            items += _.shuffle(magicItems.magicItemsI).slice(0,1);
+            items += _.shuffle(magicItems.magicItemsI).slice(0,1)
         }
     }
     for (let i = 0; i < lvl; i++) {
         d20 = dieRoller(20,1);
         if (d20 === 20) {
-            items += _.shuffle(magicItems.magicItemsII).slice(0,1);
+            items += commaSperator(items) + _.shuffle(magicItems.magicItemsII).slice(0,1);
         }
     }
     for (let i = 0; i < lvl; i++) {
         d20 = dieRoller(20,1);
         if (d20 === 20) {
-            items += _.shuffle(magicItems.magicItemsIII).slice(0,1);
+            items += commaSperator(items) + _.shuffle(magicItems.magicItemsIII).slice(0,1);
         }
     }
     for (let i = 0; i < lvl; i++) {
         d20 = dieRoller(20,1);
         if (d20 === 20) {
-            items += _.shuffle(magicItems.magicItemsIV).slice(0,1);
+            items += commaSperator(items) + _.shuffle(magicItems.magicItemsIV).slice(0,1);
         }
     }
-    return `<strong>Magic Items:</strong> <em>${items}</em> <br> <strong>Mundane Items</strong> <em>${mundane}</em>`;
+    if (items.length === 0) {
+        return `<strong>Mundane Items:</strong> <em>${mundane}</em>`;
+    } else {
+        return `<strong>Magic Items:</strong> <em>${items}</em> <br> <strong>Mundane Items:</strong> <em>${mundane}</em>`;
+    }
 }
+
 
 function hornLoader (cls,lvl) {
     if (cls === goatfolk) {
@@ -335,7 +349,7 @@ function spellLoader(npcClass,npcLevel) {
                 glamoursKnown = _.shuffle(glamours).slice(0,8);
                 break;
         }
-        return `<strong>Glamours:</strong> <em>${glamoursKnown}</em>`;
+        return `<strong>Glamours:</strong><em>${glamoursKnown}</em>`;
     } else if (cls === grimalkin) {
         switch (lvl) {
             case 0 : //lvl 1
@@ -359,9 +373,9 @@ function spellLoader(npcClass,npcLevel) {
             case 8 : case 9 : //lvl 9 and 10
                 glamoursKnown = _.shuffle(glamours).slice(0,7);
                 break;
-        } return `<strong>Glamours:</strong> <em>${glamoursKnown}</em>`; 
+        } return `<strong>Glamours:</strong><em>${glamoursKnown}</em>`; 
     } else if (cls === mossDwarf) {
-        knackKnown += knacks[dieRoller(6,1)];
+        knackKnown += knacks[dieRoller(6,1)-1];
         return `<strong>Knack:</strong> <em>${knackKnown}</em>`;
     } else if (cls === goatfolk) {
         switch (lvl) {
