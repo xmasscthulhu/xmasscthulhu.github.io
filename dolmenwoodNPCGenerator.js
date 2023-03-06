@@ -61,10 +61,20 @@ function armourLoader(cls) {
     return armour;
 }
 
+function mundaneItems() {
+    d4 = dice (1,4);
+    mndItems = randomItems[dieRoller(randomItems.length-1,0)];
+    for (i = 0; i < d4; i++) {
+        mndItems += ", " + randomItems[dieRoller(randomItems.length-1,0)];
+    }
+    return mndItems;
+}
+
 function magicItemLoader(npcLevel) {
     let lvl = npcLevel
     let d20 = 0;
     let items = "";
+    let mundane = mundaneItems();
     //let itemA = "";
     //let itemA = dieRoller(magicItems.magicItemsI.length-1,0);
     let itemB = dieRoller(magicItems.magicItemsII.length-1,0);
@@ -95,7 +105,7 @@ function magicItemLoader(npcLevel) {
             items += _.shuffle(magicItems.magicItemsIV).slice(0,1);
         }
     }
-    return `<strong>Items:</strong> <em>${items}</em>`;
+    return `<strong>Magic Items:</strong> <em>${items}</em> <br> <strong>Mundane Items</strong> <em>${mundane}</em>`;
 }
 
 function hornLoader (cls,lvl) {
@@ -547,15 +557,6 @@ function npcGenerator(npcClass,npcLevel,npcTitle) {
     <strong>THAC0</strong> ${stats[0]} <strong>MV</strong> ${mv} <strong>SV</strong> ${stats[1]} ${spls} ${items} <br>
     <br>`;
 }
-
-/*
-function randomQuest() {
-    randomLawful = lvip[arrayItemGrabber(lvip.length,0)];
-    randomNeutral = nvip[arrayItemGrabber(nvip.length,0)];
-    randomChaotic = cvip[arrayItemGrabber(cvip.length,0)];
-    randQ = randQuest[arrayItemGrabber[quest.length,0]];
-    console.log(randomLawful, randomNeutral, randomChaotic); 
-}*/
 
 function partyLevel() {
     d12 = dice(1,12);

@@ -44,7 +44,7 @@ var basicArmor = [
     "2 [17] Platemail & Shield",
 ];
     //random adventuring items
-var randomItems =[
+var randomItems = [
     "Crowbar",
     "Garlic",
     "Grappling hook",
@@ -52,7 +52,8 @@ var randomItems =[
     "Holy Symbol (One True God)",
     "Holy Water (vial)", 
     "Iron Spikes (1d12)", 
-    "Lantern","Mirror(hand,steel)",
+    "Lantern",
+    "Mirror (hand, steel)",
     "Oil(1 flask)",
     "Pole (10' long)",
     "Rations (iron, 1d6 days)",
@@ -60,7 +61,7 @@ var randomItems =[
     "Rope (50')",
     "Sack (large)",
     "Sack (small)",
-    "Stakes (1d3) amd mallet",
+    "Stakes (1d3) and mallet",
     "Thieves' tools",
     "Tinder box (flint & steel)",
     "Torches (1d6)",

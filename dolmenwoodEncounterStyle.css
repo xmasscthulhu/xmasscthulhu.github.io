@@ -146,7 +146,7 @@ input:active {
     max-width: 300px;
 }
 
-@media (max-width: 800px) {
+@media only screen and (max-width: 600px) {
     .flex-container {
         flex-direction: column;
     }
@@ -191,5 +191,49 @@ input:active {
     }
     select {
         padding: 1em;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    #mainDiv {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    #headDiv {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    #mainDiv {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    #headDiv {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    #mainDiv {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    #headDiv {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #mainDiv {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    #headDiv {
+        margin-left: 15%;
+        margin-right: 15%;
     }
 }
