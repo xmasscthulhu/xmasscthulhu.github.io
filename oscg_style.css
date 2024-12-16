@@ -1,0 +1,245 @@
+@font-face {
+  font-family: OLDENGL;
+  src: url(../../../../../../../Windows/Fonts/OLDENGL.TTF)
+}
+
+body {
+  background-color: rgb(33, 33, 33);
+}
+
+div {
+  color: antiquewhite;
+}
+
+p {
+  font-size: 12px;
+  color: antiquewhite;
+}
+
+h1 {
+  font-family:OLDENGL;
+  font-weight: normal;
+  color: blanchedalmond;
+}
+h2 {
+  font-size: 14px;
+  color: antiquewhite;
+}
+
+label {
+  color: antiquewhite;
+}
+
+td{
+  font-size: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-collapse: collapse;
+  text-align: center;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+table {
+  border-style: solid;
+  border-width: 1px;
+  border-collapse: collapse;
+}
+
+.inventoryTable {
+  border-style: solid;
+  border-width: 1px;
+  border-collapse: collapse;
+}
+
+ul{
+  color: antiquewhite;
+  font-size:12px;
+}
+
+header {
+  font-family: OLDENGL;
+  font-size: 36px;
+  text-align: center;
+  padding: 12px;
+  color:blanchedalmond;
+}
+
+nav {
+  font-size: 24px;
+  border-bottom: 5px;
+  border-color: beige;
+}
+
+tfoot{
+  font-size: 6px;
+  padding: 0%;
+}
+
+#acAndTHAC0 {
+  width:125px;
+  float: right;
+}
+
+#charClass{
+  width: 125px;
+  float: left;
+}
+
+#encumbrance{
+  border-style: solid;
+}
+
+#menu{
+  height: 20px;
+  font-size: 16px;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+#hpTable {
+  border-style: solid;
+}
+
+.menuButton{
+  font-size: 16px;
+  color: antiquewhite;
+}
+
+#printButton {
+  float:left;
+}
+
+#upperContainer{
+  width: 300px;
+  height: fit-content;
+}
+
+#generators{
+  float:left;
+}
+
+.saveTitles {
+  font-size: 10px;
+  font-style: italic;
+  text-align: center;
+}
+
+.saveValues {
+  font-size: 10px;
+  text-align: center;
+}
+
+#attributeTable {
+  text-align: center;
+  width: 100%;
+}
+
+.tableFooter {
+  font-size: 10px;
+}
+
+/*Inventory Table Style*/
+.inventoryTable {
+  width:100%;
+}
+
+.invSlot {
+  width:85%;
+  height: 12px;
+}
+.invTextField{
+  width:95%;
+  height:10px;
+  font-size: 12px;
+}
+
+.qtySlot {
+  width:0;
+  visibility: collapse;
+}
+
+.wtSlot{
+  width: 15%;
+}
+
+.itemMV{
+  width:fit-content;
+}
+
+.titleDiv{
+  min-width:350px;
+  float:none;
+}
+
+#name {
+  text-transform: capitalize;
+  color:gray;
+}
+
+#attDescription {
+  text-align: center;
+  text-transform: lowercase;
+  clear:left;
+}
+
+.tileContainer {
+  width: 20%;
+  min-width: 20%;
+  border-right-style:solid;
+  border-width:1px;
+  border-color:rgb(0, 56, 0);
+  padding-left: 2%;
+  float:left;
+}
+
+.charContainer {
+  width: 250px;
+  min-width: 20%;
+  border-width:1px;
+  padding-left: 2%;
+  float:left;
+}
+
+.statContainer {
+  float:left;
+  background-color: rgb(60, 60, 60);
+  border-radius: 10px;
+}
+
+/* Tooltip container */
+.tooltip {
+  display: inline-block;
+  /*border-bottom: 1px dotted black; If you want dots under the hoverable text */
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: blanchedalmond;
+  color: #000000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  left: 5%;
+  position: relative;
+  z-index: 1;
+  font-size: 10px;
+  font-style: italic;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent blanchedalmond transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

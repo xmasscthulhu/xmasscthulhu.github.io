@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Homebrew Character Generator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="old_school_character_generator.js"></script>
+        <link rel="stylesheet" href="oscg_style.css">
+    </head>
+    <body>
+        <header>Old-School Character Generators</header>
+        <!--<nav id="menu">
+            <div class="menuButton" id="osePure"><b>Old-School Essential: Advanced Fantasy (pure)</b></div>
+            <div class="menuButton" id="oseImpure"><b>Old-School Essential: Advanced Fantasy (impure)</b></div>
+        </nav>-->
+        <div class="tileContainer">
+            <h1>Attribute Scores</h1>
+            <h2>Step 1: Roll Attribute Scores</h2>
+            <p>Determines your STRength, INTelligence, WISdom, DEXterity, CONstitution, and CHArisma.</p>
+            <p>IMPORTANT: re-rolling your attribute scores will restart the Character Generating process.</p>
+            <button id="attributeButton" type="button" onclick="attScores()">Generate Attribute Scores</button>
+            <button id="resetButton" type="button" onclick="resetFunction()" hidden>Reset</button>
+        </div>
+        <div id="kinContainer" class="tileContainer" hidden>
+            <h1>Kindred</h1>
+            <h2>Step 2: Choose an available kindred.</h2>
+            <p>Each kindred has unique abilities and class options.</p>
+            <h2>Sources</h2>
+            <ul>
+                <li>Old-School Essentials: Advanced Fantasy (OSE:AF)</li>
+                <li>Carcass Crawler Magazine (CC)</li>
+            </ul>
+            <form>
+                <input type="radio" name="kindredSelection" id="dragonborn" value="Dragonborn">
+                    <label class="tooltip" id="label_dragonborn" class="classLabel" for="dragonborn">Dragonborn<span class="tooltiptext">CC #3</span></label><br>
+                <input type="radio" name="kindredSelection" id="drow" value="Drow">
+                    <label class="tooltip" id="label_drow" for="drow">Drow<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="duergar" value="Duergar">
+                    <label class="tooltip" id="label_duergar" class="classLabel" for="duergar">Duergar<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="dwarf" value="Dwarf">
+                    <label class="tooltip" id="label_dwarf" class="classLabel" for="dwarf">Dwarf<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="gargantua" value="Gargantua">
+                    <label class="tooltip" id="label_gargantua" class="classLabel" for="gargantua">Gargantua<span class="tooltiptext">CC #1</span></label><br>
+                <input type="radio" name="kindredSelection" id="gnome" value="Gnome">
+                    <label class="tooltip" id="label_gnome" class="classLabel" for="gnome">Gnome<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="goblin" value="Goblin">
+                    <label class="tooltip" id="label_goblin" class="classLabel" for="goblin">Goblin<span class="tooltiptext">CC #1</span></label><br>
+                <input type="radio" name="kindredSelection" id="halfling" value="Halfling">
+                    <label class="tooltip" id="label_halfling" class="classLabel" for="halfling">Halfling<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="half_elf" value="Half_elf">
+                    <label class="tooltip" id="label_half_elf" class="classLabel" for="half_elf">Half-elf<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="half_orc" value="Half_orc">
+                    <label class="tooltip" id="label_half_orc" class="classLabel" for="half_orc">Half-orc<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="hephaestan" value="Hephaestan">
+                    <label class="tooltip" id="label_hephaestan" class="classLabel" for="hephaestan">Hephaestan<span class="tooltiptext">CC #1</span></label><br>
+                <input type="radio" name="kindredSelection" id="elf" value="Elf">
+                    <label class="tooltip" id="label_elf" class="classLabel" for="elf">Elf<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="human" value="Human">
+                    <label class="tooltip" id="label_human" class="classLabel" for="human">Human<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="mutoid" value="Mutoid">
+                    <label class="tooltip" id="label_mutoid" class="classLabel" for="mutoid">Mutoid<span class="tooltiptext">CC #3</span></label><br>
+                <input type="radio" name="kindredSelection" id="mycelian" value="Mycelian">
+                    <label class="tooltip" id="label_mycelian" class="classLabel" for="mycelian">Mycelian<span class="tooltiptext">CC #3</span></label><br>
+                <input type="radio" name="kindredSelection" id="phase_elf" value="Phase Elf">
+                    <label class="tooltip" id="label_phase_elf" class="classLabel" for="phase_elf">Phase Elf<span class="tooltiptext">CC #2</span></label><br>
+                <input type="radio" name="kindredSelection" id="svirfneblin" value="Svirfneblin">
+                    <label class="tooltip" id="label_svirfneblin" class="classLabel" for="svirfneblin">Svirfneblin<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="kindredSelection" id="tiefling" value="Tiefling">
+                    <label class="tooltip" id="label_tiefling" for="tiefling">Tiefling<span class="tooltiptext">CC #3</span></label><br>
+                <input type="radio" name="kindredSelection" id="wood_elf" value="Wood Elf">
+                    <label class="tooltip" id="label_wood_elf" for="wood_elf">Wood Elf<span class="tooltiptext">CC #2</span></label>
+            </form>
+        </div>
+        <div id="classContainer" class="tileContainer" hidden>
+            <h1>Class</h1>
+            <h2>Step 3: Choose your class.</h2>
+            <p>Each class has unique skills to the add to the ones already gained by your kindred choice.</p>
+            <form id="classForm">
+                <input type="radio" name="classSelection" id="acolyte" value="acolyte">
+                    <label class="tooltip"id="label_acolyte" for="acolyte">Acolyte<span class="tooltiptext">CC #1</span></label><br>
+                <input type="radio" name="classSelection" id="acrobat" value="acrobat" >
+                    <label class="tooltip"id="label_acrobat" for="acrobat">Acrobat<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="assassin" value="assassin" >
+                    <label class="tooltip"id="label_assassin" for="assassin">Assassin<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="barbarian" value="barbarian" >
+                    <label class="tooltip"id="label_barbarian" for="barbarian">Barbarian<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="bard" value="bard" >
+                    <label class="tooltip"id="label_bard" for="bard">Bard<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="beast_master" value="beast_master" >
+                    <label class="tooltip"id="label_beast_master" for="beast_master">Beast Master<span class="tooltiptext">CC #3</span></label><br>
+                <input type="radio" name="classSelection" id="cleric" value="cleric" >
+                    <label class="tooltip" id="label_cleric" for="cleric">Cleric<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="druid" value="druid" >
+                    <label class="tooltip"id="label_druid" for="druid">Druid<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="fighter" value="fighter" >
+                    <label class="tooltip"id="label_fighter" for="fighter">Fighter<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="illusionist" value="illusionist" >
+                    <label class="tooltip"id="label_illusionist" for="illusionist">Illusionist<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="kineticist" value="kineticist" >
+                    <label class="tooltip"id="label_kineticist" for="kineticist">Kineticist<span class="tooltiptext">CC #1</span></label><br>
+                <input type="radio" name="classSelection" id="knight" value="knight" >
+                    <label class="tooltip"id="label_knight" for="knight">Knight<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="mage" value="mage" >
+                    <label class="tooltip"id="label_mage" for="mage">Mage<span class="tooltiptext">CC #1</span></label><br>
+                <input type="radio" name="classSelection" id="magic_user" value="magic-user" >
+                    <label class="tooltip"id="label_magic_user" for="magic_user">Magic-user<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="paladin" value="paladin" >
+                    <label class="tooltip"id="label_paladin" for="paladin">Paladin<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="ranger" value="ranger" >
+                    <label class="tooltip"id="label_ranger" for="ranger">Ranger<span class="tooltiptext">OSE:AF</span></label><br>
+                <input type="radio" name="classSelection" id="thief" value="thief" >
+                    <label class="tooltip"id="label_thief" for="thief">Thief<span class="tooltiptext">OSE:AF</span></label><br>
+            </form>
+        </div>
+        <div id="charContainer" class="charContainer">
+            <h1>Character</h1>
+            <button id="printButton" type="button" onclick="printDiv('statContainer')">Print/Save</button>
+            <div id="statContainer" class="statContainer">
+                <div id="upperContainer">
+                    <div id="sheetHead">
+                        <div id="charClass">
+                            <input id="name" type="text" value="Name">
+                            <label id="savedName" hidden></label>
+                            <input type="button" id="saveNameButton" value="Save Name" onclick="saveName()">
+                            <br>
+                            <label id="kinName">Kindred: </label><br>
+                            <label id="levelLabel" for="level">Level: </label>
+                            <select id="level" hidden>
+                                <option id="0" value="0" selected>--</option>
+                                <option id="1" value="1" hidden>1</option>
+                                <option id="2" value="2" hidden>2</option>
+                                <option id="3" value="3" hidden>3</option>
+                                <option id="4" value="4" hidden>4</option>
+                                <option id="5" value="5" hidden>5</option>
+                                <option id="6" value="6" hidden>6</option>
+                                <option id="7" value="7" hidden>7</option>
+                                <option id="8" value="8" hidden>8</option>
+                                <option id="9" value="9" hidden>9</option>
+                                <option id="10" value="10" hidden>10</option>
+                                <option id="11" value="11" hidden>11</option>
+                                <option id="12" value="12" hidden>12</option>
+                                <option id="13" value="13" hidden>13</option>
+                                <option id="14" value="14" hidden>14</option>
+                            </select><label id="savedLevel" hidden></label><br>
+                            <label id="className">Class: </label><br>
+                            <table id="hpTable">
+                                <tr>
+                                    <td></td>
+                                    <td>Current</td>
+                                    <td>Maximum</td>
+                                </tr>
+                                <tr>
+                                    <td><b>HP:</b></td>
+                                    <td></td>
+                                    <td id="hp"></td>
+                                </tr>
+                            </table>
+                            <div class="tableFooter" id="CONmod"></div>
+                        </div>
+                        <div id="filler"></div>
+                        <table id="acAndTHAC0">
+                            <tr>
+                                <th>Armour Class (AC)</th>
+                            </tr>
+                                <td id="armourClass">0</td>
+                            <tr>
+                                <th>Attack Bonus</th>
+                            </tr>
+                            <tr>
+                                <td id=attackBonus>0</td>
+                            </tr>
+                        </table>
+                        <br>
+                        <hr>
+                        <div class="titleDiv"><b>Attribute Scores</b></div>
+                        <table id="attributeTable">
+                            <tr>
+                                <th>STR</th>
+                                <th>INT</th>
+                                <th>WIS</th>
+                                <th>DEX</th>
+                                <th>CON</th>
+                                <th>CHA</th>
+                            </tr>
+                            <tr>
+                                <td class="attScore" id="STR"></td>
+                                <td class="attScore" id="INT"></td>
+                                <td class="attScore" id="WIS"></td>
+                                <td class="attScore" id="DEX"></td>
+                                <td class="attScore" id="CON"></td>
+                                <td class="attScore" id="CHA"></td>
+                            </tr>
+                        </table>
+                        <div class="tableFooter"><b>Success:</b> d20 roll <em>under or equal to</em> <b>Attribute Score</b></div>
+                        <h2>Saves</h2>
+                        <table id="saveScores">
+                            <tr>
+                                <td class="saveTitles">Death & Poison</td>
+                                <td class="saveTitles">Wands</td>
+                                <td class="saveTitles">Paralysis & Petrification</td>
+                                <td class="saveTitles">Breath Weapons</td>
+                                <td class="saveTitles">Spells, Rods, & Staves</td>
+                            </tr>
+                            <tr>
+                                <td class="saveValues" id="vsDeath"></td>
+                                <td class="saveValues" id="vsWands"></td>
+                                <td class="saveValues" id="vsPara"></td>
+                                <td class="saveValues" id="vsBreath"></td>
+                                <td class="saveValues" id="vsSpells"></td>
+                            </tr>
+                        </table>
+                        <div class="tableFooter"><b>Success:</b> d20 roll <em>over or equal to</em> <b>Save Score</b></div>
+                        <table id="attributeBonuses">
+                            <tr>
+                                <td><b>Reaction Bonus:</b></td>
+                                <td id="CHAmod"></td>
+                                <td><b>Initiative Bonus:</b></td>
+                                <td id="initBonus"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Save vs. Magical Modifier:</b></td>
+                                <td id="WISmod"></td>
+                                <td><b>Armour Class Modifier:</b></td>
+                                <td id="acBonus"></tb>
+                            </tr>
+                        </table>
+                        <hr>
+                        <div><b>Attack Rolls</b></div>
+                        <table id="attacks">
+                            <tr>
+                                <td>Melee Attack</td>
+                                <td> d20 ±</td>
+                                <td id="STRmod"></td>
+                                <td>±</td>
+                                <td></td>
+                                <td>±</td>
+                                <td></td>
+                                <td>=</td>
+                                <td id="result"></td>
+                            </tr>
+                            <tr>
+                                <td>Melee Damage</td>
+                                <td> dN ±</td>
+                                <td id="STRmod2"></td>
+                                <td>±</td>
+                                <td></td>
+                                <td>±</td>
+                                <td></td>
+                                <td>=</td>
+                                <td id="result"></td>
+                            </tr>
+                            <tr>
+                                <td>Ranged Attack:</td>
+                                <td> d20 ±</td>
+                                <td id="misBonus"></td>
+                                <td>±</td>
+                                <td></td>
+                                <td>±</td>
+                                <td></td>
+                                <td>=</td>
+                                <td id="result"></td>
+                            </tr>
+                            <tfoot>
+                                <td></td>
+                                <td></td>
+                                <td><em>Attr. Mods.</em></td>
+                                <td></td>
+                                <td>Atk. Bonus</td>
+                                <td></td>
+                                <td><em>Addl. Mods.</em></td>
+                                <td></td>
+                                <td><em>Result</em></td>
+                            </tfoot>
+                        </table>
+                        <hr>
+                        <table id="oneInSixes">
+                            <tr>
+                                <td><b>Open Stuck Door</b></td>
+                                <td id="OD">1</td>
+                                <td id="gOD" hidden></td>
+                                <td>-in-6</td>
+                                <td><b>Listen at Door</b></td>
+                                <td id="LD">1</td>
+                                <td>-in-6</td>
+                            </tr>
+                            <tr>
+                                <td><b>Find Secret Door</b></td>
+                                <td id="SD">1</td>
+                                <td>-in-6</td>
+                                <td><b>Find Room Trap</b></td>
+                                <td id="FT">1</td>
+                                <td>-in-6</td>
+                            </tr>
+                            <tr id="CTRow" hidden>
+                                <td><b>Find Construction Tricks</b></td>
+                                <td id="CT">2</td>
+                                <td>-in-6</td>
+                            </tr>
+                        </table>
+                        <p id="modifiers"></p>
+                    </div>
+                    <div id="inventoryContainer">
+                        <table class="inventoryTable" id="equipped">
+                            <tr>
+                                <td><b>Equipped Items</b></td>
+                                <td class="itemMV">MV</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_0"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_1"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_2"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_3"></td>
+                                <td class="itemMV">90' (30')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_4"></td>
+                                <td class="itemMV">90' (30')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_5"></td>
+                                <td class="itemMV">60' (20')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_6"></td>
+                                <td class="itemMV">60' (20')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_7"></td>
+                                <td class="itemMV">30' (10')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_e_invSlot_8"></td>
+                                <td class="itemMV">30' (10')</td>
+                            </tr>
+                        </table>
+                        <table class="savedInventoryTable" id="savedEquipped" hidden>
+                            <tr>
+                                <td><b>Equipped Items</b></td>
+                                <td class="itemMV">MV</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_0"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_1"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_2"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_3"></td>
+                                <td class="itemMV">90' (30')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_4"></td>
+                                <td class="itemMV">90' (30')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_5"></td>
+                                <td class="itemMV">60' (20')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_6"></td>
+                                <td class="itemMV">60' (20')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_7"></td>
+                                <td class="itemMV">30' (10')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="e_invSlot_8"></td>
+                                <td class="itemMV">30' (10')</td>
+                            </tr>
+                        </table>
+                        <table class="inventoryTable" id="packed">
+                            <tr>
+                                <td><b>Packed Items</b></td>
+                                <td><b>MV</b></td>
+                            </tr>
+                            <tr id="invRow_STR18">
+                                <td class="invSlot"><input type="text" value="STR 18+" class="invTextField" id="txt_p_invSlot_0" disabled></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR16">
+                                <td class="invSlot"><input type="text" value="STR 16+" class="invTextField" id="txt_p_invSlot_1" disabled></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR13">
+                                <td class="invSlot"><input type="text" value="STR 13+" class="invTextField" id="txt_p_invSlot_2" disabled></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR9">
+                                <td class="invSlot"><input type="text" value="STR 9+" class="invTextField" id="txt_p_invSlot_3" disabled></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR6">
+                                <td class="invSlot"><input type="text" value="STR 6+" class="invTextField" id="txt_p_invSlot_4" disabled></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR4">
+                                <td class="invSlot"><input type="text" value="STR 4+" class="invTextField" id="txt_p_invSlot_5" disabled></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_6"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_7"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_8"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_9"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_10"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_11"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_12"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_13"></td>
+                                <td class="itemMV">90' (30')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_14"></td>
+                                <td class="itemMV">90' (30')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_15"></td>
+                                <td class="itemMV">60' (20')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_16"></td>
+                                <td class="itemMV">60' (20')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_17"></td>
+                                <td class="itemMV">30' (10')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot"><input type="text" value="" class="invTextField" id="txt_p_invSlot_18"></td>
+                                <td class="itemMV">30' (10')</td>
+                            </tr>
+                        </table>
+                        <table class="savedInventoryTable" id="savedPacked" hidden>
+                            <tr>
+                                <td><b>Packed Items</b></td>
+                                <td><b>MV</b></td>
+                            </tr>
+                            <tr id="invRow_STR18">
+                                <td class="invSlot" id="p_invSlot_0"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR16">
+                                <td class="invSlot" id="p_invSlot_1"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR13">
+                                <td class="invSlot" id="p_invSlot_2"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR9">
+                                <td class="invSlot" id="p_invSlot_3"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR6">
+                                <td class="invSlot" id="p_invSlot_4"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr id="invRow_STR4">
+                                <td class="invSlot" id="p_invSlot_5"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_6"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_7"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_8"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_9"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_10"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_11"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_12"></td>
+                                <td class="itemMV">120' (40')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_13"></td>
+                                <td class="itemMV">90' (30')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_14"></td>
+                                <td class="itemMV">90' (30')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_15"></td>
+                                <td class="itemMV">60' (20')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_16"></td>
+                                <td class="itemMV">60' (20')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_17"></td>
+                                <td class="itemMV">30' (10')</td>
+                            </tr>
+                            <tr>
+                                <td class="invSlot" id="p_invSlot_18"></td>
+                                <td class="itemMV">30' (10')</td>
+                            </tr>
+                        </table>
+                        <input type="button" id="saveEquipButton" onclick="saveEquipped()" value="Save Inventory">
+                        <!--
+                            <h2>Inventory</h2>
+                            <div id="inventoryDiv">
+                                <p id="weapons"></p>
+                                <p id="armour"></p>
+                                <p id="gear"></p>
+                            </div>
+                            <table id="encumbrance">
+                                <tr>
+                                    <th>Current</th>
+                                    <th>Maximum</th>
+                                </tr>
+                                <tr>
+                                    <td id="totalWt">0</td>
+                                    <td id="maxWt">0</td>
+                                </tr>
+                            </table>
+                        -->
+                    </div>
+                </div>
+                <div id="abilitiesContainer">
+                    <h1>Description</h1>
+                    <div id="attDescription"></div>
+                    <h2>Kindred Abilities</h2>
+                    <p id="abilities"></p>
+                    <h2>Class Abilities</h2>
+                    <p id="classAbilities"></p>
+                    <div id="spellsContainer" hidden>
+                        <h2>Class Spells</h2>
+                        <div id="1stLevelSpells" hidden></div>
+                        <div id="2ndLevelSpells" hidden></div>
+                        <div id="3rdLevelSpells" hidden></div>
+                        <div id="4thLevelSpells" hidden></div>
+                        <div id="5thLevelSpells" hidden></div>
+                        <div id="6thLevelSpells" hidden></div>
+                    </div>
+                    <h2>Secondary Skills</h2>
+                    <p id="formerOccupation"></p>
+                    <h2>Retainers</h2>
+                    <p id="retMax"></p>
+                    <p id="retLoyal"></p>
+                    <h1>Language</h1>
+                    <p id="literacy"></p>
+                    <p id="knownLanguages"></p>
+                    <p id="bonusLanguages"></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
