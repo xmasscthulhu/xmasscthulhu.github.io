@@ -6,6 +6,10 @@ a:visited{
     color:rgb(208,161,245);
 }
 
+.navLink {
+    float:left;
+}
+
 body {
     background-color: black;
 }
